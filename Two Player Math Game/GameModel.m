@@ -14,8 +14,8 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _player1 = [[Player alloc] init];
-        _player2 = [[Player alloc] init];
+        _player1 = [[Player alloc] initWithName:@"Player 1"];
+        _player2 = [[Player alloc] initWithName:@"Player 2"];
         NSLog(@"New Game");
     }
     return self;
@@ -24,8 +24,7 @@
 - (void)generateEquation {
     int firstNumber = arc4random_uniform(20);
     int secondNumber = arc4random_uniform(20);
-    int answer;
-    answer = firstNumber + secondNumber;
+    self.displayEquation = [NSString stringWithFormat:@"%@: %d + %d = ?", self.player1.name, firstNumber, secondNumber];
 }
 
 

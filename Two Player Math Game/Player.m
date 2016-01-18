@@ -10,10 +10,11 @@
 
 @implementation Player
 
-- (instancetype)init {
+- (instancetype)initWithName:(NSString *)name {
     self = [super init];
     if (self) {
         _lives = 3;
+        _name = name;
     }
     return self;
 }

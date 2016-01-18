@@ -25,6 +25,9 @@
     [super viewDidLoad];
     _startGame = [[GameModel alloc] init];
     _inputNumbers = [[NSMutableArray alloc] init];
+    
+    [self.startGame generateEquation];
+    self.titleLabel.text = self.startGame.displayEquation;
 }
 
 - (void)didReceiveMemoryWarning {
