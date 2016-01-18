@@ -14,9 +14,11 @@
 @property (nonatomic, strong) Player *player1;
 @property (nonatomic, strong) Player *player2;
 @property (nonatomic, strong) NSString *displayEquation;
+@property (nonatomic, assign) int equationAnswer;
 @property (nonatomic, assign) int inputAnswer;
 
 - (void)generateEquation;
+- (void)checkAnswer;
 
 
 @end

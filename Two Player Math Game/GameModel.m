@@ -24,7 +24,16 @@
 - (void)generateEquation {
     int firstNumber = arc4random_uniform(20);
     int secondNumber = arc4random_uniform(20);
+    self.equationAnswer = firstNumber + secondNumber;
     self.displayEquation = [NSString stringWithFormat:@"%@: %d + %d = ?", self.player1.name, firstNumber, secondNumber];
+}
+
+- (void)checkAnswer {
+    if (self.inputAnswer == self.equationAnswer) {
+        NSLog(@"Correct!");
+    } else {
+        NSLog(@"Wrong!");
+    }
 }
 
 

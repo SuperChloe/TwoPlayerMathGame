@@ -46,6 +46,7 @@
 
 - (IBAction)enterButton:(UIButton *)sender {
     [self createAnswer];
+    [self.startGame checkAnswer];
 }
 - (IBAction)zeroButton:(UIButton *)sender {
     [self.inputNumbers addObject:@"0"];
