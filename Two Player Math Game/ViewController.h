@@ -11,6 +11,7 @@
 @interface ViewController : UIViewController
 
 - (void)createAnswer;
+- (void)playGame;
 
 @end
 

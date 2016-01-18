@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "GameModel.h"
+#import "Player.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -25,14 +26,25 @@
     [super viewDidLoad];
     _startGame = [[GameModel alloc] init];
     _inputNumbers = [[NSMutableArray alloc] init];
-    
-    [self.startGame generateEquation];
-    self.titleLabel.text = self.startGame.displayEquation;
+
+    [self playGame];
+
+
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)playGame {
+    if (self.startGame.player1.isPlaying) {
+        [self.startGame generateEquation:self.startGame.player1];
+        self.titleLabel.text = self.startGame.displayEquation;
+    } else {
+        [self.startGame generateEquation:self.startGame.player2];
+        self.titleLabel.text = self.startGame.displayEquation;
+    }
 }
 
 - (void)createAnswer {
@@ -47,6 +59,15 @@
 - (IBAction)enterButton:(UIButton *)sender {
     [self createAnswer];
     [self.startGame checkAnswer];
+    if (self.startGame.player1.isPlaying) {
+        self.startGame.player1.isPlaying = NO;
+        self.startGame.player2.isPlaying = YES;
+        [self playGame];
+    } else if (self.startGame.player2.isPlaying) {
+        self.startGame.player2.isPlaying = NO;
+        self.startGame.player1.isPlaying = YES;
+        [self playGame];
+    }
 }
 - (IBAction)zeroButton:(UIButton *)sender {
     [self.inputNumbers addObject:@"0"];

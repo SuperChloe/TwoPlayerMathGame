@@ -12,6 +12,7 @@
 
 @property (nonatomic, assign) int lives;
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic) BOOL isPlaying;
 
 - (instancetype)initWithName:(NSString *)name;
 - (void)loseLife;
