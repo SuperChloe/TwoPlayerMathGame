@@ -7,7 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Player.h"
 
 @interface GameModel : NSObject
+
+@property (nonatomic, strong) Player *player1;
+@property (nonatomic, strong) Player *player2;
+@property (nonatomic, strong) NSString *displayEquation;
+@property (nonatomic, assign) int inputAnswer;
+
+- (void)generateEquation;
+
 
 @end
