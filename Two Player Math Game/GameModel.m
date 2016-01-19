@@ -35,13 +35,23 @@
     }
 }
 
-- (void)checkAnswer {
+- (void)checkAnswer{
     if (self.inputAnswer == self.equationAnswer) {
-        
+        if (self.player1.isPlaying) {
+            self.player1.lives = self.player1.lives + 1;
+        } else if (self.player2.isPlaying) {
+            self.player2.lives = self.player2.lives + 1;
+        }
         NSLog(@"Correct!");
     } else {
+        if (self.player1.isPlaying) {
+            self.player1.lives = self.player1.lives - 1;
+        } else if (self.player2.isPlaying) {
+            self.player2.lives = self.player2.lives - 1;
+        }
         NSLog(@"Wrong!");
     }
+    NSLog(@"p1 %d, p2 %d", self.player1.lives, self.player2.lives);
 }
 
 
