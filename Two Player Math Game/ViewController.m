@@ -39,6 +39,22 @@
 
 - (void)playGame {
     if (self.startGame.player1.lives == 0 || self.startGame.player2.lives == 0) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"GAME OVER!!!"
+                                                                       message:@"Do you want to play again?"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"Hell yes!" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction *action) {
+                                                                  self.startGame.player1.lives = 3;
+                                                                  self.startGame.player1.isPlaying = YES;
+                                                                  self.startGame.player2.lives = 3;
+                                                                  self.startGame.player2.isPlaying = NO;
+                                                                  [self playGame];
+                                                              }];
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        
         NSLog(@"Game Over!");
     } else {
         if (self.startGame.player1.isPlaying) {

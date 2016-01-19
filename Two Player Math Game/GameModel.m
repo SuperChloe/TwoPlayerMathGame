@@ -11,6 +11,8 @@
 
 @implementation GameModel
 
+const int kMaxNumber = 20;
+
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -25,8 +27,8 @@
 
 
 - (void)generateEquation:(Player *)player {
-    int firstNumber = arc4random_uniform(20);
-    int secondNumber = arc4random_uniform(20);
+    int firstNumber = arc4random_uniform(kMaxNumber);
+    int secondNumber = arc4random_uniform(kMaxNumber);
     self.equationAnswer = firstNumber + secondNumber;
     if (player == self.player1) {
         self.displayEquation = [NSString stringWithFormat:@"%@: %d + %d = ?", self.player1.name, firstNumber, secondNumber];
