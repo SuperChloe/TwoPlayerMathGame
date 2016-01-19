@@ -38,16 +38,20 @@
 }
 
 - (void)playGame {
-    if (self.startGame.player1.isPlaying) {
-        [self.startGame generateEquation:self.startGame.player1];
-        self.titleLabel.text = self.startGame.displayEquation;
-        self.player1ScoreLabel.text = [NSString stringWithFormat:@"Player 1 Score: %d", self.startGame.player1.lives];
-        self.player2ScoreLabel.text = [NSString stringWithFormat:@"Player 2 Score: %d", self.startGame.player2.lives];
+    if (self.startGame.player1.lives == 0 || self.startGame.player2.lives == 0) {
+        NSLog(@"Game Over!");
     } else {
-        [self.startGame generateEquation:self.startGame.player2];
-        self.titleLabel.text = self.startGame.displayEquation;
-        self.player1ScoreLabel.text = [NSString stringWithFormat:@"Player 1 Score: %d", self.startGame.player1.lives];
-        self.player2ScoreLabel.text = [NSString stringWithFormat:@"Player 2 Score: %d", self.startGame.player2.lives];
+        if (self.startGame.player1.isPlaying) {
+            [self.startGame generateEquation:self.startGame.player1];
+            self.titleLabel.text = self.startGame.displayEquation;
+            self.player1ScoreLabel.text = [NSString stringWithFormat:@"Player 1 Score: %d", self.startGame.player1.lives];
+            self.player2ScoreLabel.text = [NSString stringWithFormat:@"Player 2 Score: %d", self.startGame.player2.lives];
+        } else {
+            [self.startGame generateEquation:self.startGame.player2];
+            self.titleLabel.text = self.startGame.displayEquation;
+            self.player1ScoreLabel.text = [NSString stringWithFormat:@"Player 1 Score: %d", self.startGame.player1.lives];
+            self.player2ScoreLabel.text = [NSString stringWithFormat:@"Player 2 Score: %d", self.startGame.player2.lives];
+        }
     }
 }
 

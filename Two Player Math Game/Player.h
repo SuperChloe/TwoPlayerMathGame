@@ -15,6 +15,5 @@
 @property (nonatomic) BOOL isPlaying;
 
 - (instancetype)initWithName:(NSString *)name;
-- (void)loseLife;
 
 @end

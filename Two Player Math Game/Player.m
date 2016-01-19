@@ -19,8 +19,5 @@
     return self;
 }
 
-- (void)loseLife {
-    
-}
 
 @end
