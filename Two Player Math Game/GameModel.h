@@ -18,7 +18,7 @@
 @property (nonatomic, assign) int inputAnswer;
 
 - (void)generateEquation:(Player *)player;
-- (void)checkAnswer;
+- (BOOL)checkAnswer;
 
 
 @end

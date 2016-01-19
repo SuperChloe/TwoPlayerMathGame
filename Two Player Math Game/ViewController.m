@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *player2ScoreLabel;
 @property (nonatomic, strong) NSMutableArray *inputNumbers;
 @property (nonatomic, strong) GameModel *startGame;
+@property (weak, nonatomic) IBOutlet UILabel *answerLabel;
 
 
 @end
@@ -82,7 +83,15 @@
 
 - (IBAction)enterButton:(UIButton *)sender {
     [self createAnswer];
-    [self.startGame checkAnswer];
+    if ([self.startGame checkAnswer]) {
+        self.answerLabel.text = @"Correct!";
+        self.answerLabel.textColor = [UIColor greenColor];
+        [self fadeOut];
+    } else {
+        self.answerLabel.text = @"Wrong!";
+        self.answerLabel.textColor = [UIColor redColor];
+        [self fadeOut];
+    };
     if (self.startGame.player1.isPlaying) {
         self.startGame.player1.isPlaying = NO;
         self.startGame.player2.isPlaying = YES;
@@ -92,7 +101,9 @@
         self.startGame.player1.isPlaying = YES;
         [self playGame];
     }
+    
 }
+
 - (IBAction)zeroButton:(UIButton *)sender {
     [self.inputNumbers addObject:@"0"];
 }
@@ -122,6 +133,16 @@
 }
 - (IBAction)nineButton:(UIButton *)sender {
     [self.inputNumbers addObject:@"9"];
+}
+
+- (void)fadeOut {
+    self.answerLabel.alpha = 1.0;
+    [UIView animateWithDuration:1.0
+                          delay:0.0
+                        options:UIViewAnimationCurveEaseOut
+                     animations:^{self.answerLabel.alpha = 0.0;}
+                     completion:^(BOOL finished){}];
+
 }
 
 

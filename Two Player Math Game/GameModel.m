@@ -37,7 +37,7 @@ const int kMaxNumber = 20;
     }
 }
 
-- (void)checkAnswer{
+- (BOOL)checkAnswer {
     if (self.inputAnswer == self.equationAnswer) {
         if (self.player1.isPlaying) {
             self.player1.lives = self.player1.lives + 1;
@@ -45,6 +45,7 @@ const int kMaxNumber = 20;
             self.player2.lives = self.player2.lives + 1;
         }
         NSLog(@"Correct!");
+        return YES;
     } else {
         if (self.player1.isPlaying) {
             self.player1.lives = self.player1.lives - 1;
@@ -52,8 +53,8 @@ const int kMaxNumber = 20;
             self.player2.lives = self.player2.lives - 1;
         }
         NSLog(@"Wrong!");
+        return NO;
     }
-    NSLog(@"p1 %d, p2 %d", self.player1.lives, self.player2.lives);
 }
 
 
