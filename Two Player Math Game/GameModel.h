@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSString *displayEquation;
 @property (nonatomic, assign) int equationAnswer;
 @property (nonatomic, assign) int inputAnswer;
+@property (nonatomic) BOOL currentPlayer;
 
 - (void)generateEquation:(Player *)player;
 - (BOOL)checkAnswer;

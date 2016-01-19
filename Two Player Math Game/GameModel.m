@@ -17,10 +17,7 @@ const int kMaxNumber = 20;
     self = [super init];
     if (self) {
         _player1 = [[Player alloc] initWithName:@"Player 1"];
-        _player1.isPlaying = YES;
         _player2 = [[Player alloc] initWithName:@"Player 2"];
-        _player2.isPlaying = NO;
-        NSLog(@"New Game");
     }
     return self;
 }
@@ -39,17 +36,17 @@ const int kMaxNumber = 20;
 
 - (BOOL)checkAnswer {
     if (self.inputAnswer == self.equationAnswer) {
-        if (self.player1.isPlaying) {
+        if (self.currentPlayer) {
             self.player1.lives = self.player1.lives + 1;
-        } else if (self.player2.isPlaying) {
+        } else {
             self.player2.lives = self.player2.lives + 1;
         }
         NSLog(@"Correct!");
         return YES;
     } else {
-        if (self.player1.isPlaying) {
+        if (self.currentPlayer) {
             self.player1.lives = self.player1.lives - 1;
-        } else if (self.player2.isPlaying) {
+        } else {
             self.player2.lives = self.player2.lives - 1;
         }
         NSLog(@"Wrong!");

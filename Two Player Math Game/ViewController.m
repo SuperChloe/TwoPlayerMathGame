@@ -48,9 +48,8 @@
         UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"Hell yes!" style:UIAlertActionStyleDefault
                                                               handler:^(UIAlertAction *action) {
                                                                   self.startGame.player1.lives = 3;
-                                                                  self.startGame.player1.isPlaying = YES;
                                                                   self.startGame.player2.lives = 3;
-                                                                  self.startGame.player2.isPlaying = NO;
+                                                                  self.startGame.currentPlayer = YES;
                                                                   [self playGame];
                                                               }];
         [alert addAction:defaultAction];
@@ -58,7 +57,7 @@
         
         NSLog(@"Game Over!");
     } else {
-        if (self.startGame.player1.isPlaying) {
+        if (self.startGame.currentPlayer) {
             [self.startGame generateEquation:self.startGame.player1];
             self.titleLabel.text = self.startGame.displayEquation;
             self.player1ScoreLabel.text = [NSString stringWithFormat:@"Player 1 Score: %d", self.startGame.player1.lives];
@@ -92,13 +91,11 @@
         self.answerLabel.textColor = [UIColor redColor];
         [self fadeOut];
     };
-    if (self.startGame.player1.isPlaying) {
-        self.startGame.player1.isPlaying = NO;
-        self.startGame.player2.isPlaying = YES;
+    if (self.startGame.currentPlayer) {
+        self.startGame.currentPlayer = NO;
         [self playGame];
-    } else if (self.startGame.player2.isPlaying) {
-        self.startGame.player2.isPlaying = NO;
-        self.startGame.player1.isPlaying = YES;
+    } else  {
+        self.startGame.currentPlayer = YES;
         [self playGame];
     }
     
